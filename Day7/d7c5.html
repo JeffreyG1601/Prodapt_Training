@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Snake Game</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      font-family: sans-serif;
+      background-color: #222;
+      color: white;
+    }
+
+    #menu {
+      width: 250px;
+      background-color: #333;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      border-right: 2px solid #444;
+    }
+
+    label {
+      font-size: 14px;
+    }
+
+    select, button, input[type="color"] {
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    #game-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      border: 2px solid white;
+      margin-top: 20px;
+      background-color: black;
+    }
+
+    #score {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="menu">
+    <h2>Game Settings</h2>
+
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+      <option value="150">Easy</option>
+      <option value="100" selected>Medium</option>
+      <option value="60">Hard</option>
+    </select>
+
+    <label for="snakeColor">Snake Color:</label>
+    <input type="color" id="snakeColor" value="#00FF00">
+
+    <label for="bgColor">Background Color:</label>
+    <input type="color" id="bgColor" value="#000000">
+
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="resetGame()">Reset</button>
+    <button id="pauseBtn" onclick="togglePause()">Pause</button>
+  </div>
+
+  <div id="game-container">
+    <div id="score">Score: 0</div>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreDisplay = document.getElementById("score");
+
+    let gameInterval;
+    let intervalTime = 100;
+    let snakeColor = "#00FF00";
+    let bgColor = "#000000";
+    const box = 20;
+    const canvasSize = 400;
+    let snake, direction, food, score, gameOver;
+    let paused = false; // ✅ Now placed correctly inside JS
+
+    function initGame() {
+      snake = [{ x: 10, y: 10 }];
+      direction = { x: 0, y: 0 };
+      food = spawnFood();
+      score = 0;
+      gameOver = false;
+      scoreDisplay.textContent = "Score: 0";
+      paused = false;
+      document.getElementById("pauseBtn").textContent = "Pause";
+    }
+
+    function spawnFood() {
+      return {
+        x: Math.floor(Math.random() * (canvasSize / box)),
+        y: Math.floor(Math.random() * (canvasSize / box))
+      };
+    }
+
+    function draw() {
+      if (gameOver || paused) return;
+
+      if (direction.x === 0 && direction.y === 0) {
+        drawStatic();
+        return;
+      }
+
+      const head = {
+        x: snake[0].x + direction.x,
+        y: snake[0].y + direction.y
+      };
+
+      if (
+        head.x < 0 || head.y < 0 ||
+        head.x >= canvasSize / box || head.y >= canvasSize / box ||
+        snake.some(segment => segment.x === head.x && segment.y === head.y)
+      ) {
+        gameOver = true;
+        alert("Game Over! Score: " + score);
+        return;
+      }
+
+      snake.unshift(head);
+
+      if (head.x === food.x && head.y === food.y) {
+        score++;
+        scoreDisplay.textContent = "Score: " + score;
+        food = spawnFood();
+      } else {
+        snake.pop();
+      }
+
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "red";
+      ctx.fillRect(food.x * box, food.y * box, box, box);
+
+      ctx.fillStyle = snakeColor;
+      for (let s of snake) {
+        ctx.fillRect(s.x * box, s.y * box, box, box);
+      }
+    }
+
+    function drawStatic() {
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "red";
+      ctx.fillRect(food.x * box, food.y * box, box, box);
+
+      ctx.fillStyle = snakeColor;
+      for (let s of snake) {
+        ctx.fillRect(s.x * box, s.y * box, box, box);
+      }
+    }
+
+    function togglePause() {
+      if (gameOver) return;
+      paused = !paused;
+      const btn = document.getElementById("pauseBtn");
+      btn.textContent = paused ? "Resume" : "Pause";
+    }
+
+    function startGame() {
+      intervalTime = parseInt(document.getElementById("difficulty").value);
+      snakeColor = document.getElementById("snakeColor").value;
+      bgColor = document.getElementById("bgColor").value;
+
+      initGame();
+      clearInterval(gameInterval);
+      gameInterval = setInterval(draw, intervalTime);
+    }
+
+    function resetGame() {
+      clearInterval(gameInterval);
+      initGame();
+      drawStatic();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowUp": if (direction.y === 0) direction = { x: 0, y: -1 }; break;
+        case "ArrowDown": if (direction.y === 0) direction = { x: 0, y: 1 }; break;
+        case "ArrowLeft": if (direction.x === 0) direction = { x: -1, y: 0 }; break;
+        case "ArrowRight": if (direction.x === 0) direction = { x: 1, y: 0 }; break;
+        case "Escape": togglePause(); break;
+      }
+    });
+
+    resetGame();
+  </script>
+</body>
+</html>

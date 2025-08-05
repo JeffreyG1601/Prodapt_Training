@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card p-4 shadow" style="width: 24rem;">
+            <h4 class="card-title text-center mb-4">Sign Up</h4>
+            <form id="signupForm" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    <div id="nameError" class="form-text text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    <div id="emailError" class="form-text text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob">
+                    <div id="dobError" class="form-text text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    <div id="passwordError" class="form-text text-danger"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="repassword" class="form-label">Re-enter Password</label>
+                    <input type="password" class="form-control" id="repassword" placeholder="Re-enter password">
+                    <div id="repasswordError" class="form-text text-danger"></div>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                <div id="errorMsg" class="mt-3 text-danger text-center"></div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Validation functions
+    function validateName() {
+        const name = document.getElementById('name').value.trim();
+        const nameError = document.getElementById('nameError');
+        if (name === '') {
+            nameError.textContent = 'Name is required.';
+            return false;
+        } else {
+            nameError.textContent = '';
+            return true;
+        }
+    }
+
+    function validateEmail() {
+        const email = document.getElementById('email').value.trim();
+        const emailError = document.getElementById('emailError');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            emailError.textContent = 'Please enter a valid email address.';
+            return false;
+        } else {
+            emailError.textContent = '';
+            return true;
+        }
+    }
+
+    function validateDOB() {
+        const dob = document.getElementById('dob').value;
+        const dobError = document.getElementById('dobError');
+        if (dob === '') {
+            dobError.textContent = 'Date of Birth is required.';
+            return false;
+        } else {
+            dobError.textContent = '';
+            return true;
+        }
+    }
+
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const passwordError = document.getElementById('passwordError');
+        // Password validation: min 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 special char
+        const pattern = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-={}:;"'<>,.?]).*$/;
+        if (!pattern.test(password)) {
+            passwordError.textContent = 'Password must be at least 8 characters and include uppercase, lowercase, digit, and special character.';
+            return false;
+        } else {
+            passwordError.textContent = '';
+            return true;
+        }
+    }
+
+    function validateRePassword() {
+        const password = document.getElementById('password').value;
+        const repassword = document.getElementById('repassword').value;
+        const repasswordError = document.getElementById('repasswordError');
+        if (repassword !== password || repassword === '') {
+            repasswordError.textContent = 'Passwords do not match.';
+            return false;
+        } else {
+            repasswordError.textContent = '';
+            return true;
+        }
+    }
+
+    document.getElementById('name').addEventListener('input', validateName);
+    document.getElementById('email').addEventListener('input', validateEmail);
+    document.getElementById('dob').addEventListener('change', validateDOB);
+    document.getElementById('password').addEventListener('input', function() {
+        validatePassword();
+    });
+    document.getElementById('repassword').addEventListener('input', validateRePassword);
+
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const validName = validateName();
+        const validEmail = validateEmail();
+        const validDOB = validateDOB();
+        const validPassword = validatePassword();
+        const validRePassword = validateRePassword();
+        if (validName && validEmail && validDOB && validPassword && validRePassword) {
+            alert('Sign up successful!');
+            // this.submit(); // Uncomment to actually submit
+        }
+    });
+    </script>
+</body>
+</html>

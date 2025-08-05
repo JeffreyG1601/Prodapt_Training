@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hollow Purple Collision</title>
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+    }
+
+    .orb {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      opacity: 0.8;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .red {
+      background: radial-gradient(circle, red 0%, transparent 70%);
+      left: 0;
+      animation: moveRed 4s forwards;
+    }
+
+    .blue {
+      background: radial-gradient(circle, blue 0%, transparent 70%);
+      right: 0;
+      animation: moveBlue 4s forwards;
+    }
+
+    .purple {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(128,0,128,1) 0%, transparent 70%);
+      box-shadow:
+        0 0 60px 30px rgba(128,0,128,0.9),
+        0 0 100px 50px rgba(128,0,255,0.6),
+        0 0 150px 70px rgba(255,0,255,0.4);
+      transform: translate(-50%, -50%) scale(0);
+      animation: appearAndPulse 3s 4s forwards;
+    }
+
+    @keyframes moveRed {
+      0% {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-50%) translateX(110px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes moveBlue {
+      0% {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-50%) translateX(-110px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes appearAndPulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      30% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 1;
+      }
+      60% {
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="orb red"></div>
+    <div class="orb blue"></div>
+    <div class="purple"></div>
+  </div>
+</body>
+</html>

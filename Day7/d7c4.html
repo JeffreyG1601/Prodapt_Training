@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <marquee 
+        behavior="scroll" 
+        direction="left" 
+        id="eventMarquee"
+        tabindex="0"
+        onmouseover="this.stop(); this.style.background='#ffe082'; document.getElementById('marqueeMsg').innerText='Mouse Over Marquee!';"
+        onmouseout="this.start(); this.style.background=''; document.getElementById('marqueeMsg').innerText='Mouse Out from Marquee!';"
+        onblur="alert('Marquee lost focus!')"
+    >Welcome to Event Demo!</marquee>
+    <div id="marqueeMsg" style="height:20px;text-align:center;color:#d84315;"></div>
+    <br><br>
+    <button onclick="alert('Button clicked!')">Click Me (onclick)</button>
+    <br><br>
+    <button ondblclick="alert('Button double-clicked!')">Double Click Me (ondblclick)</button>
+    <br><br>
+    <input type="text" id="blurInput" placeholder="Click then click elsewhere (onblur)" onblur="alert('Input lost focus!')">
+    <br><br>
+    <div id="hoverDiv" style="width:200px;height:50px;background:#e0e0e0;text-align:center;line-height:50px;"
+        onmouseover="this.style.background='#90caf9'; document.getElementById('hoverMsg').innerText='Mouse Over!'"
+        onmouseout="this.style.background='#e0e0e0'; document.getElementById('hoverMsg').innerText='Mouse Out!'">
+        Hover over me (onmouseover/onmouseout)
+    </div>
+    <div id="hoverMsg" style="height:20px;text-align:center;color:#1976d2;"></div>
+</body>
+</html>

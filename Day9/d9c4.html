@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="demoForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+    <script>
+        class Demo{
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            display() {
+                return `Name: ${this.name}, Age: ${this.age}`;
+            }
+        }
+
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const demoObj = new Demo(name, age);
+            document.getElementById('output').textContent = demoObj.display();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multiple Employees Storage</title>
+  <style>
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #444;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input[type="text"] {
+      margin: 5px;
+    }
+    .btn {
+      padding: 8px 15px;
+      margin: 10px 5px;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    function storeName() {
+      const name = document.getElementById('uname').value;
+      const id = document.getElementById('uid').value;
+      const age = document.getElementById('uage').value;
+      const salary = document.getElementById('usal').value;
+      const designation = document.getElementById('udesig').value;
+
+      if (!id || !name || !age || !salary || !designation) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const obj = {
+        id,
+        name,
+        age,
+        salary,
+        designation
+      };
+
+      let emps = JSON.parse(localStorage.getItem('emps')) || [];
+
+      // Prevent duplicate IDs
+      if (emps.some(emp => emp.id === id)) {
+        alert("Employee with this ID already exists.");
+        return;
+      }
+
+      emps.push(obj);
+      localStorage.setItem('emps', JSON.stringify(emps));
+      displayName();
+      clearForm();
+    }
+
+    function displayName() {
+      const tableDiv = document.getElementById('tableDisplay');
+      tableDiv.innerHTML = ''; // Clear previous output
+      const emps = JSON.parse(localStorage.getItem('emps')) || [];
+
+      if (emps.length === 0) {
+        tableDiv.innerHTML = "<p>No data found.</p>";
+        return;
+      }
+
+      const table = document.createElement('table');
+      const header = `
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Salary</th>
+          <th>Designation</th>
+          <th>Action</th>
+        </tr>`;
+      let rows = '';
+
+      emps.forEach(emp => {
+        rows += `
+          <tr>
+            <td>${emp.id}</td>
+            <td>${emp.name}</td>
+            <td>${emp.age}</td>
+            <td>${emp.salary}</td>
+            <td>${emp.designation}</td>
+            <td><button class="btn" onclick="deleteName('${emp.id}')">Delete</button></td>
+          </tr>`;
+      });
+
+      table.innerHTML = header + rows;
+      tableDiv.appendChild(table);
+    }
+
+    function deleteName(empId) {
+      let emps = JSON.parse(localStorage.getItem('emps')) || [];
+      emps = emps.filter(emp => emp.id !== empId);
+      localStorage.setItem('emps', JSON.stringify(emps));
+      displayName();
+    }
+
+    function clearForm() {
+      document.getElementById('uid').value = '';
+      document.getElementById('uname').value = '';
+      document.getElementById('uage').value = '';
+      document.getElementById('usal').value = '';
+      document.getElementById('udesig').value = '';
+    }
+
+    window.onload = displayName;
+  </script>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h1>Employee Records</h1>
+    <input type="text" id="uid" placeholder="ID" />
+    <input type="text" id="uname" placeholder="Name" />
+    <input type="text" id="uage" placeholder="Age" />
+    <input type="text" id="usal" placeholder="Salary" />
+    <input type="text" id="udesig" placeholder="Designation" />
+    <br />
+    <input type="submit" value="Store" class="btn" onclick="storeName()" />
+  </div>
+
+  <div id="tableDisplay" style="text-align: center;"></div>
+</body>
+</html>

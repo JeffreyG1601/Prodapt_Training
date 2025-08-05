@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div style="text-align: center;">
+        <h1>Test Script 2</h1>
+        A: <input type="text" id="inputA" name="inputA"><br>
+        B: <input type="text" id="inputB" name="inputB"><br>
+        <button type ='button' onclick="calculate('add')">Add</button>
+        <button type ='button' onclick="calculate('sub')">Subtract</button>
+        <button type ='button' onclick="calculate('mul')">Multiply</button>
+        <button type ='button' onclick="calculate('div')">Divide</button><br>
+        Result : <input type="text" id="result" name="result" readonly><br>
+        <script>
+            function calculate(operation) {
+                const inputA = parseInt(document.getElementById('inputA').value);
+                const inputB = parseInt(document.getElementById('inputB').value);
+                if (isNaN(inputA) || isNaN(inputB)) {
+                    alert("Please enter valid numbers for both A and B");
+                    return;
+                }
+                let result;
+                if (operation === 'add') {
+                    result = inputA + inputB;
+                } else if (operation === 'sub') {
+                    result = inputA - inputB;
+                } else if (operation === 'mul') {
+                    result = inputA * inputB;
+                } else if (operation === 'div') {
+                    if (inputB !== 0) {
+                        result = inputA / inputB;
+                    } else {
+                        alert("Cannot divide by zero");
+                        return;
+                    }
+                }
+                document.getElementById('result').value = result;
+            }
+        </script>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux Architecture Explained</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; color: #222; }
+        h1, h2 { color: #2c3e50; }
+        .diagram { text-align: center; margin: 30px 0; }
+        .diagram img { max-width: 400px; }
+        ul { margin-left: 20px; }
+        .step { margin-bottom: 20px; }
+        code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+        .container { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px #0001; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Understanding Flux Architecture</h1>
+        <h1>CSS Flexbox (<code>display: flex</code>)</h1>
+        <p><strong>Flexbox</strong> is a CSS layout model that makes it easy to design flexible and efficient layouts, align items, and distribute space within a container, even when their size is unknown or dynamic.</p>
+
+        <h2>How Flexbox Works</h2>
+        <ul>
+            <li>Set <code>display: flex</code> on a container to make its children flexible items.</li>
+            <li>Use properties like <code>justify-content</code>, <code>align-items</code>, and <code>flex-direction</code> to control alignment and layout.</li>
+        </ul>
+
+        <h2>Live Example</h2>
+        <div class="flex-demo">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+
+        <h2>Sample Code</h2>
+        <pre><code>&lt;div class="flex-demo"&gt;
+        <h2>Key Concepts of Flux</h2>
+        <ul>
+            <li><strong>Actions:</strong> Plain JavaScript objects that describe what happened. They are sent to the dispatcher to signal that something has changed.</li>
+            <li><strong>Dispatcher:</strong> A central hub that manages all data flow in a Flux application. It receives actions and dispatches them to the stores.</li>
+            <li><strong>Stores:</strong> Containers for application state and logic. Stores register with the dispatcher and update themselves in response to actions.</li>
+            <li><strong>Views:</strong> React components (or other UI components) that listen to stores for changes and re-render accordingly.</li>
+        </ul>
+
+        <div class="diagram">
+            <img src="https://raw.githubusercontent.com/facebook/flux/main/docs/img/flux-simple-f8-diagram-explained-1300w.png" alt="Flux Architecture Diagram">
+            <p><em>Flux unidirectional data flow</em></p>
+        </div>
+
+        <h2>How Flux Works: The Data Flow</h2>
+        <ol>
+            <li class="step"><strong>Action is triggered:</strong> The user interacts with the view (e.g., clicks a button), which creates an <code>Action</code>.</li>
+            <li class="step"><strong>Dispatcher dispatches:</strong> The <code>Action</code> is sent to the <code>Dispatcher</code>, which forwards it to all registered <code>Stores</code>.</li>
+            <li class="step"><strong>Stores update state:</strong> Each <code>Store</code> checks the action type and updates its state if necessary.</li>
+            <li class="step"><strong>View updates:</strong> The <code>Store</code> emits a change event. The <code>View</code> listens for this event and re-renders itself with the new data.</li>
+
+        <h2>Common Flexbox Properties</h2>
+        <ul>
+            <li><code>display: flex</code> &mdash; enables flex context for all its children</li>
+            <li><code>flex-direction</code> &mdash; row (default), column, row-reverse, column-reverse</li>
+            <li><code>justify-content</code> &mdash; aligns items horizontally (start, end, center, space-between, space-around, space-evenly)</li>
+            <li><code>align-items</code> &mdash; aligns items vertically (start, end, center, stretch, baseline)</li>
+            <li><code>flex-wrap</code> &mdash; controls whether items wrap onto multiple lines</li>
+            <li><code>flex</code> &mdash; shorthand for <code>flex-grow</code>, <code>flex-shrink</code>, and <code>flex-basis</code></li>
+        </ul>
+
+        <h2>Summary</h2>
+        <p>Flexbox is a powerful tool for building responsive layouts in CSS. It simplifies alignment, spacing, and distribution of elements within a container.</p>
+        </ol>
+
+        <h2>Why Use Flux?</h2>
+        <ul>
+            <li>Predictable state management with a clear data flow.</li>
+            <li>Easy to debug and test, since data only flows in one direction.</li>
+            <li>Decouples state and UI, making code more modular and maintainable.</li>
+        </ul>
+
+        <h2>Flux vs. MVC</h2>
+        <p>Unlike traditional <strong>MVC</strong> (Model-View-Controller), where data can flow in multiple directions, <strong>Flux</strong> enforces a strict one-way data flow. This reduces complexity and makes the application easier to reason about.</p>
+
+        <h2>Example Action Object</h2>
+        <pre><code>{
+  type: 'ADD_TODO',
+  text: 'Learn Flux architecture'
+}</code></pre>
+
+        <h2>Summary</h2>
+        <p>Flux is a pattern for managing application state in a predictable way. Its unidirectional data flow makes it easier to understand, debug, and scale large applications.</p>
+    </div>
+</body>
+</html>

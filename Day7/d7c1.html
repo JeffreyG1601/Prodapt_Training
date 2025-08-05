@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Test script</h1>
+        <label for="name">name :</label>
+        <input type="text" id="name" name="name" >
+        <label for="pass">pass :</label>
+        <input type="password" id="pass" name="pass" >
+        <button id="submit">Submit</button>
+        <script>
+            document.getElementById('submit').addEventListener('click', function() {
+                const name = document.getElementById('name').value;
+                const pass = document.getElementById('pass').value;
+                alert(`Name: ${name}, Password: ${pass}`);
+            });
+        </script>
+    </div>
+</body>
+</html>
