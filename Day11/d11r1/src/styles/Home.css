@@ -1,0 +1,20 @@
+/* Home.css */
+.home-bg {
+    min-height: 100vh;
+    background-image: url('../images/Bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home-bg h1 {
+    color: #fff;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+}
+.home-bg p {
+    color: #f0f0f0;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+}
