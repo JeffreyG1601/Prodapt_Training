@@ -1,0 +1,15 @@
+/* Contact.css */
+.contact-container {
+    padding: 2rem;
+    background-color: #eaf6fb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.contact-container h1 {
+    color: #2980b9;
+    margin-bottom: 1rem;
+}
+.contact-container p {
+    color: #444;
+    font-size: 1.1rem;
+}
