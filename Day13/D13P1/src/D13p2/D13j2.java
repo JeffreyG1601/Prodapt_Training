@@ -5,7 +5,7 @@ import java.util.Scanner;
     protected int uid, age;
     protected String name, designation;
     protected int salary;
-
+    abstract void checktest();
     public EmpDetails(String designation, int salary) {
         this.designation = designation;
         this.salary = salary;
@@ -47,26 +47,55 @@ import java.util.Scanner;
 
 class Clerk extends EmpDetails {
     public Clerk() {
-        super("Clerk", 10000);
+        super("Clerk", 10000);	
     }
+
+	@Override
+	void checktest() {
+		System.out.println("==========================");
+		System.out.println("beep beep boop boop");
+		
+		System.out.println("==========================");
+	}
 }
 
 class Tester extends EmpDetails {
     public Tester() {
         super("Tester", 15000);
     }
+    @Override
+	void checktest() {
+		System.out.println("==========================");
+		System.out.println("beep beep boop boop");
+		
+		System.out.println("==========================");
+	}
 }
 
 class Manager extends EmpDetails {
     public Manager() {
         super("Manager", 20000);
     }
+    @Override
+	void checktest() {
+		System.out.println("==========================");
+		System.out.println("beep beep boop boop");
+		
+		System.out.println("==========================");
+	}
 }
 
 class Developer extends EmpDetails {
     public Developer() {
         super("Developer", 25000);
     }
+    @Override
+	void checktest() {
+		System.out.println("==========================");
+		System.out.println("beep beep boop boop");
+		
+		System.out.println("==========================");
+	}
 }
 
 public class D13j2 {
@@ -77,12 +106,12 @@ public class D13j2 {
         while (true) {
             System.out.println("=======================================");
             System.out.println("Select one of the following options:");
-            System.out.println("1. Create \n2. Display \n3. Raise \n4. Exit");
+            System.out.println("1. Create \n2. Display \n3. Raise \n4. Check\n5. Exit");
             System.out.println("=======================================");
             int choice = sc.nextInt();
             sc.nextLine();
 
-            if (choice == 4) {
+            if (choice == 5) {
                 System.out.println("Exiting...");
                 break;
             }
@@ -122,7 +151,12 @@ public class D13j2 {
                     else
                         System.out.println("No such employee created yet.");
                     break;
-
+                case 4:
+                	if (employees[index] != null)
+                		employees[index].checktest();
+                	else
+                		System.out.println("No such employee created yet.");
+                	break;
                 default:
                     System.out.println("Invalid menu choice.");
             }
