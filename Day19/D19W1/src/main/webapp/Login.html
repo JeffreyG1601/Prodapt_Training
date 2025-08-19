@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn {
+      background: #4CAF50;
+      color: white;
+    }
+    .login-btn:hover {
+      background: #45a049;
+    }
+
+    .register-btn {
+      background: #2196F3;
+      color: white;
+    }
+    .register-btn:hover {
+      background: #1976D2;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <!-- Error message placeholder -->
+    <p id="error" class="error"></p>
+
+    <form action="Login" method="post">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="uname" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="pwd" required>
+
+  <button type="submit" class="login-btn">Login</button>
+</form>
+
+
+    <form action="Register.html" method="get">
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+  </div>
+
+  <script>
+    // Check if error is passed in query string
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get("error");
+    if (error) {
+      document.getElementById("error").textContent = error;
+    }
+  </script>
+</body>
+</html>
