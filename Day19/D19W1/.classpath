@@ -9,6 +9,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/jeffre.g/Downloads/jars/jars/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jeffre.g/Downloads/jars/jars/mysql-connector-j-8.0.33.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>D19W1</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -12,18 +12,14 @@
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description></description>
-    <display-name>FirstServ</display-name>
     <servlet-name>FirstServ</servlet-name>
-    <servlet-class>FirstServ.FirstServ</servlet-class>
+    <servlet-class>FirstServ</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FirstServ</servlet-name>
     <url-pattern>/FirstServ</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
     <servlet-class>Login</servlet-class>
   </servlet>
@@ -31,4 +27,28 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CreateA</servlet-name>
+    <servlet-class>CreateA</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateA</servlet-name>
+    <url-pattern>/CreateA</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>Cbal</servlet-name>
+  <servlet-class>Cbal</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Cbal</servlet-name>
+  <url-pattern>/Cbal</url-pattern>
+</servlet-mapping>
 </web-app>
