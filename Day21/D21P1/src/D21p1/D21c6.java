@@ -52,7 +52,7 @@ public class D21c6 {
     public static void main(String[] args) {
         while (true) {
             System.out.println("\n--- Hospital System ---");
-            System.out.println("1. Add Doctor");
+            System.out.println("1. Add Doctor");g
             System.out.println("2. View All Doctors");
             System.out.println("3. Add Patient");
             System.out.println("4. View All Patients");
