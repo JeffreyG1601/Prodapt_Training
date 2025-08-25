@@ -34,9 +34,9 @@ class Plan{
 	}
 	public boolean OTTmatch(boolean H,boolean A,boolean S,boolean N) {
 		if(H && this.Hotstar) return false;
-		if(A && this.Hotstar) return false;
-		if(S && this.Hotstar) return false;
-		if(N && this.Hotstar) return false;
+		if(A && this.Amazon_Prime) return false;
+		if(S && this.Spotify) return false;
+		if(N && this.Netflix) return false;
 		else return true;
 	}
 	public int match(double udata,double uvoice,double usms) {
@@ -49,11 +49,11 @@ class Plan{
 	public void display(String name) {
 		System.out.println("==============================");
 		System.out.println("\t\t"+name);
+		System.out.println("Price(in RS):"+Price);
 		System.out.println("Days    :"+Days);
 		System.out.println("Data(GB):"+Data);
 		System.out.println("Voice(mins):"+(Voice == Double.POSITIVE_INFINITY ? "Unlimited" : Voice));
 		System.out.println("SMS        :"+SMS);
-		System.out.println("Price(in RS):"+Price);
 		System.out.println("OTT List:");
 		if(Hotstar == true) System.out.println("Hotstar");
 		if(Amazon_Prime== true) System.out.println("Amazon Prime");
@@ -139,20 +139,20 @@ public class Plans {
 			j=sc.next();
 			if(j.equalsIgnoreCase("y")) {
 				H=true;
-				j=null;
 			}
+			j=null;
 			System.out.println("Do you want Spotify(Y/N):");
 			j=sc.next();
 			if(j.equalsIgnoreCase("y")) {
 				S=true;
-				j=null;
 			}	
+			j=null;
 			System.out.println("Do you want Amazon Prime(Y/N):");
 			j=sc.next();
 			if(j.equalsIgnoreCase("y")) {
 				A=true;
-				j=null;
 			}	
+			j=null;
 			System.out.println("Do you want Netflix (Y/N):");
 			j=sc.next();
 			if(j.equalsIgnoreCase("y")) {
@@ -169,7 +169,7 @@ public class Plans {
 		filtered.sort((p1,p2)->{
 			int s1 =p1.match(udata,uvoice,usms);
 			int s2 =p2.match(udata,uvoice,usms);
-			if (s1!=s2) return Integer.compare(s1, s2);
+			if (s1!=s2) return Integer.compare(s2, s1);
 			return Double.compare(p1.Price,p2.Price);
 		});
 		System.out.println("Recommended Plans :");
