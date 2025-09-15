@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Constructor Injection -->
+    <bean id="empConstructor" class="com.Employee">
+        <constructor-arg name="uid" value="101"/>
+        <constructor-arg name="name" value="Mahesh"/>
+        <constructor-arg name="city" value="Hyderabad"/>
+        <constructor-arg name="ph" value="987654"/>
+    </bean>
+
+    <!-- Setter Injection -->
+    <bean id="empSetter" class="com.Employee">
+        <property name="uid" value="202"/>
+        <property name="name" value="Suresh"/>
+        <property name="city" value="Delhi"/>
+        <property name="ph" value="123456"/>
+    </bean>
+
+</beans>
