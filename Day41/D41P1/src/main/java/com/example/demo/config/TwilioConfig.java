@@ -1,0 +1,15 @@
+package com.example.demo.config;
+
+import com.twilio.Twilio;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class TwilioConfig {
+
+    public TwilioConfig(
+            @Value("${twilio.accountSid}") String accountSid,
+            @Value("${twilio.authToken}") String authToken) {
+        Twilio.init(accountSid, authToken);
+    }
+}
