@@ -1,0 +1,125 @@
+/* 🌐 Global Styles */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #e9edf3; /* light gray-blue background */
+  margin: 0;
+  padding: 0;
+  color: #1a202c; /* dark readable text */
+}
+button {
+  margin-left: 5px;
+}
+
+/* App container */
+.app-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  color: #1e3a8a; /* navy blue */
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* Section containers */
+.section {
+  border-radius: 10px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Differentiate class vs functional areas */
+.func-section {
+  border-left: 6px solid #38a169;
+  background: #f6fff9; /* light greenish */
+}
+
+.class-section {
+  border-left: 6px solid #3182ce;
+  background: #f5faff; /* light bluish */
+}
+
+.section h2 {
+  color: #2c5282;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #cbd5e0;
+  padding-bottom: 5px;
+}
+
+/* Employee list items */
+.employee-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.employee-item:hover {
+  background-color: #f1f5f9;
+  transform: scale(1.01);
+}
+
+.employee-item.selected {
+  background-color: #bee3f8; /* highlight */
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e0;
+  flex: 1;
+  min-width: 160px;
+  transition: 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 4px rgba(66, 153, 225, 0.4);
+}
+
+button {
+  padding: 8px 15px;
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #2c5282;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .app-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}
